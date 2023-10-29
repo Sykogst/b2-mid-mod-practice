@@ -1,0 +1,8 @@
+<%= @employee.name %>
+<%= @employee.department.name %>
+
+<% @employee.tickets_sorted.each do |ticket| %>
+  <div id="ticket-<%= ticket.id %>">
+    <%= ticket.subject %>
+  </div>
+<% end %>
