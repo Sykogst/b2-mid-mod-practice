@@ -23,13 +23,28 @@ RSpec.describe Employee, type: :model do
     @employee_1.tickets << @ticket_1
     @employee_1.tickets << @ticket_2
     @employee_1.tickets << @ticket_3
+
+    @employee_2.tickets << @ticket_1
+    @employee_3.tickets << @ticket_1
+    @employee_3.tickets << @ticket_2
   end
 
   describe 'instance methods' do
    describe '#tickets_sorted' do
-     it 'list of tickets from oldest to newest' do
-       expect(@employee_1.tickets_sorted).to eq([@ticket_2, @ticket_1, @ticket_3])
-     end
+      it 'list of tickets from oldest to newest' do
+        expect(@employee_1.tickets_sorted).to eq([@ticket_2, @ticket_1, @ticket_3])
+      end
    end
+
+    # describe '#shared_tickets' do
+    #   it 'returns' do
+    #     expect(Employee.shared_tickets(@employee_1.id)).to eq([@employee_2, @employee_3])
+    #   end
+    # end
+    describe '#shared_tickets' do
+      it 'returns' do
+        expect(@employee_1.shared_tickets).to eq([@employee_2, @employee_3])
+      end
+    end
   end
 end

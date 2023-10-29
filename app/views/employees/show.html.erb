@@ -1,5 +1,18 @@
 <%= @employee.name %>
 <%= @employee.department.name %>
+<%= @employee.level %>
+<% @employee.shared_tickets.each do |friend| %>
+  <%= friend.name %>
+<% end %>
+
+
+<%= form_with url: "/employees/#{@employee.id}/tickets", method: :post, data: { turbo: false } do |f| %>
+  <%= f.label :ticket %>
+  <%= f.text_field :ticket %>
+
+  <%= f.hidden_field :employee_id, value: @employee.id %>
+  <%= f.submit "Add Ticket" %>
+<% end %>
 
 <% @employee.tickets_sorted.each do |ticket| %>
   <div id="ticket-<%= ticket.id %>">
